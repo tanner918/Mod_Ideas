@@ -1,0 +1,20 @@
+This mod will likely need to wait until we get more info on the Steppe DLC, and how confederations and the migration mechanic will work. It might be possible that Paradox already considered something like this, so this mod might not be necessary. But, since confederations are possible outside the Steppe, something might need to be implemented to allow those tribal nations to use this system as well.
+
+Depending on how confederations are setup, it might be possible to allow the entire confederation to migrate together, like how historically, the Magyars were a confederation of different tribes that migrated together.
+
+What exactly the targets for this migration might be would depend on how confederations are allowed to be setup, and what ranks the members are.
+    - Regardless of the ranks of the members, you would need to target a title/region that has enough land for all of the confederation members (or at least those that want to move). For this, it might be best to limit this to just duchies/counties, as that would increase the chances of allowing enough land to properly be determined and distributed to the confederation members. 
+        - If its setup so that every member is given a title of equal rank, then you would need to target a title that has enough titles of the same rank around it.
+
+        - It could also be setup so that the current leader of the confederation gets a duchy and its associated counties, while the other members get counties surrounding that duchy.
+
+        - Not sure if this is possible, but could also maybe setup a custom CB that requires, at a minimum, you to control enough counties in the war so every member gets at least one. If you control more counties than there are members in the confederation, then the titles get split according to their relative sizes in the confederation.
+            - For example, if you have 4 confederation members, but through the war you control 11 counties, the script would determine that each member gets 2 counties each. Then, with the remaining 3 counties, the 3 strongest members of the confederation would each get one. This would result in the 3 strongest members getting 3 counties each, and the weakest getting only 2 counties.
+    
+    - After this group-migration, the members would abandon their old territories and move to control the newly conquered lands.
+        - Could maybe make it setup like the Varangian Adventure CB where the older titles are destroyed and all directly held counties are given to different characters, and any old vassals are given independance.
+
+        - If using a mod that has a minority system like TFE/ROA/WtWSMS/etc, then could maybe give the newly conquered counties minorities of the same faith/culture of the migrators.
+
+        - Would need to figure what to do with the holdings. In the Vangian Adventure CB, it will convert the character to Feudal if they conquer a castle. But this would make the confederation members Feudal, getting rid of the confederation. But removing the holding, and forcing it to become a tribal holding also doesn't make much sense.
+            - Could maybe then just create a new title with elective succession that the confederation leader gets, allowing the "leader" of the confederation (now represented by this new title) to change, until someone centralizes it.
