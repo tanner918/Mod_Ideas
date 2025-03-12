@@ -1,0 +1,76 @@
+####################################################
+####             History/Background             ####
+####################################################
+
+Historically, hostages were key figures in diplomacy during this era. They were often used as "incentives", to ensure that a nation upheld certain pacts or treaties. Hostages were typically the children of nobles, chieftains, or kings. Many different nations used hostages in similar ways, such as the Romans, Greeks, Persians, Carthaginians, etc.
+
+For example, Rome would:
+	- Take hostages from tribes that subjected themselves to Rome, to ensure that the tribes would maintain loyalty.
+
+	- Take hostages from allies to ensure they didn't switch sides in wars.
+
+	- Take hostages from rebellious provinces/subjects to deter future revolts.
+
+The hostages' treatment varied depending on their circumstances. "Higher-class" hostages (Princes, Nobles, Aristocrats, etc.) were often treated quite well. They were often educated in Roman custom, and sometimes even integrated into Roman society, as attempts to Romanize them. On the otherhand, "lower-class" hostages (lower-ranking individuals, soldiers, etc.) were often kept in somewhat harsher coniditons, under house arrest, or under military guard, especially if their people were seen as untrustworthy.
+
+When interacting/negotiating with the home nations of hostages, they played several key roles:
+	- Some hostages became sufficiently Romanized, and became sympathetic to the Roman cause. If they were chosen as the next ruler of their peoples (or if Rome forced them into that role, typically through war), they sometimes ruled their nations as allies/subjects of Rome. (i.e. Juba II of Numidia/Mauretania was taken as a hostage after Julius Caesar defeated his father. He was later installed as king of a client state loyal to Rome)
+
+	- Some hostages used their Roman education to help them lead revolts against Rome (i.e. Arminius leading Germanic revolts against Rome)
+
+	- Some hostages were exchanged or ransomed as a part of negotiating new pacts/treaties.
+
+	- Regardless of whether the hostage became a new pro-Roman ruler or not, their time in Roman, exposed to Roman literature, military tactics, governance, etc. sometimes influenced the development of their home nations.
+
+
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+	- Given how common it was for nations to use hostages, this could probably be something available to every nation. But maybe certain actions can only be taken under certain conditions
+		- For example, from what I could find, the Roman practice of trying to educate/Romanize hostages wasn't something the Germanic tribes typically did. So maybe any content/mechanics related to "educating/grooming" hostages to be sympathetic to a nation could be limited to more settled/centralized realms that use Monarchy/Republic governments.
+
+	- If Country A has a hostage from Country B, then Country A should be prevented from declaring war on Country B. But Country B should only be discouraged (decreased chance of AI taking decision, getting some penalty, etc) from declaring war on Country A.
+		- If Country B declares on Country A, and the hostage in Country A is disloyal and old enough, maybe have some way of trying to allow them to escape back to Country B.
+		
+		- But, under these circumstances, it wouldn't be uncommon for Country A to execute/punish the hostage for the actions of their home country. So maybe make it so that when the declaration is made, Country A gets an event where they can decide what to do with the hostage (execute, imprison, nothing, release, etc.), then certain effects happen depending on what is chosen, and hostage has a chance to escape depending on loyalty.
+
+	- A country could maybe premptively offer to exchange hostages with a neighboring country of ~equal power, or just offer a hostage to a stronger country, in order to get some sort of "non-aggression pact".
+
+	- A stronger country, or one that beat another country in a war, should be able to demand a hostage when making some sort of pact/treaty (in Imperator, this would likely just mean the stronger/winning country making the weaker/losing country a subject).
+		- Should a custom subject type be made that is only viable as long as the overlord country has the hostage?
+
+	- How should a character being a hostage be setup and tracked?
+		- Could maybe use something like the "Foreign Citizen" trait/modifier, but setup to show they are a hostage. It could have similar constraints on what they can/can't do, but using a custom trait/modifier would allow for better control on what events can trigger for the hostage, what interactions can target them, etc.
+		
+		- Imperator does track the home country for characters, so it might be possible to just use that as the way to track where the character actually came from. But if this ends up not being possible, or causes conflicts, might be able to just give the character a variable to track that, since I know that will never change. Might want to end up using a custom variable just in case the hostage ends up remaining in the country keeping them hostage and they decide to become a full citizen in that country. Doing so would allow for more detailed interaction with their former home country. If we used the in-game's home country tracking system, then once they became a full citizen their home country would change.
+		
+		- Might need to give the hostage a special variable to identify which country they are actually supposed to be a hostage in, as a failsafe in case they somehow end up somewhere else.
+			- Could also maybe use this for some special events/decisions/interactions.
+				- Depending on how this might happen, if there are "legitimate" ways for the hostage to somehow end up in another country, maybe allow the country they end up in to return the hostage to their home country in exchange for an opinion penalty with the country that had them as a hostage, or willingly return the hostage in exchange for an opinion boost with the country keeping them hostage.
+				
+				- Not sure how often characters move to other countries.
+					- You can sell characters into slavery, which can move them to another country (or kill them off), but that would likely be disabled for hostages.
+
+					- You can banish prisoners (don't know if this always sends them to another country, or if there is a chance of them "disappearing", like selling into slavery). Imprisoning hostages will likely be disabled in most cases (with the notable exception of when their home country declares war on them, as mentioned above).
+
+	- There should be some way of allowing an elligible country to actively try "educating/Romanizing" a hostage, like how they did in real life.
+		- As mentioned previously, this could probably be limited to settled countries (either Monarchies or Republics) since it seems tribes didn't really do this.
+
+		- When they are properly "educated/Romanized", they should get a loyalty boost when inside that country, as well as finally allow converting the character's culture/religion (although I would need to see exactly what effects that might end up having if they return to their home country for whatever reason.)
+
+		- Since I will likely be making this assuming Invictus as the base (since no one really plays without it at this point), I might be able to use their succession calculation events as a means of determining whether the hostage should be considered the actual primary heir. If they end up being the primary heir, and the ruler of their home country dies (meaning they would normally have become the new ruler had they remained in their home country), then maybe allow them to return to their home countries, make them the ruler, and make the country a subject of the country they were a hostage in, to represent situations like Juba II mentioned above.
+			- As an alternative, if there home country is a monarchy and the hostage is a child of the current ruler, maybe allow the country holding them hostage to declare war to put them on the throne, making them a subject.
+				- They might get a loyalty boost while that hostage-character remains the rulerut it could make other characters in that new subject disloyal, to represent how they wouldn't like some foreign power forcing a pretender/puppet on the throne.
+
+
+
+
+
+
+
+
+
+
+
+
