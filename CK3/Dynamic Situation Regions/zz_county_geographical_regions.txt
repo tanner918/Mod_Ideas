@@ -1,0 +1,20 @@
+﻿
+test_county_region_title:c_roma = { # This region gets referenced when I try triggering the custom scripted_effect by passing it the title by referencing the title directly, as "title:c_roma". This is how the custom county regions are going to need to be setup to use this mod idea.
+	counties = {
+		c_roma
+	}
+}
+
+
+test_county_region_scope:test_region = { # This region gets referenced when I try triggering the custom scripted_effect by passing it the title as a scope, as "scope:test_region"
+	counties = {
+		c_middlesex
+	}
+}
+
+
+test_county_region_$REGION$ = { # This region doesn't seem to get referenced when testing using the current mod setup
+	counties = {
+		c_byzantion
+	}
+}

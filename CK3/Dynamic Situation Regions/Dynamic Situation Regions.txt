@@ -1,0 +1,174 @@
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+Dev Diary 168 for Khans of the Steppe described how everything coming in the DLC can be used/modified with modding.
+
+When talking about the new Situation system, it mentions that the same situation type can be started in multiple regions, and that the subregion(s) can be changed each time a new situation is started. In addition to this, the dev diary mentions that the subregions themselves can grow/shrink throughout the game depending on certain decisions/scripted_effects/etc (the best example of this is likely the "Expand the Steppe" decision coming with the DLC, which will allow Nomadic rulers to add regions like the Balkans/Russia to the Great Steppe, allowing rulers there to begin using the Nomadic content).
+
+The main issue with this is that it seems like the subregions can only be defined and grown/shrunk using predefined geographical_regions. This prevents truly dynamic Situations from being started that can occur in any part of the map, be as large/small as initially desired, and have the capability to change on a county-level.
+
+However, it might be possible to overcome this limitation by expanding/shrinking a situation's subregion on a county-by-county basis. (The issue with doing this on a duchy-by-duchy basis is that since you can now dynamically create and change de jure duchies in game, that will prevent this method from working correctly after a duchy has been changed).
+
+The method to do this is quite tedious, but could potentially allow for truly dynamic and reactive situations. This would be done by first creating custom geographical_regions for every single county in the game (yes, I know, annoying, but something like Python scripts could simplify this greatly). In this folder, there are three other files provided that I used to test this idea out, so make sure to read those to properly understand what I am talking about in the below explanation.
+    - "zz_county_geographical_regions.txt" shows a couple different ways I thought the designated county regions MIGHT get referenced when I tried using it in a custom scripted_effect. 
+    
+    - "test_decisions.txt" has a test decision I was using in order to call the scripted_effect in order to test out how these custom geographical_regions would get referenced.
+
+    - "test_effects.txt" has the custom scripted_effect that I setup to visually show me what geographical_region was being referenced. It is setup to change that specific county to be Hellenic, to make it quick and easy to determine which region was referenced.
+    
+    
+Of the three custom regions defined in the region file, only the first two would actually be referenced, and which one was referenced depended entirely upon HOW I told the scripted_effect what title I wanted to reference. If I passed the title directly to the scripted_effect ( "REGION = title:c_roma" ), it would use the first geographical_region, which was the one I wanted. But, if I tried saving the title in a scope, and passed that scope to the scripted_effect ( "REGION = scope:test_region" ), it was instead the second geographical_region that got referenced, which was not the one I wanted. This clearly shows that in order to make this system dynamic, you can't use scopes, since "region = test_county_region_$REGION$" interprets whatever gets passed through "REGION" as a string, preventing what was stored in the scope from actually being referenced.
+
+Also when testing, I tried to see what would happen if you tried using the "THIS" scope reference in a few ways, and this also ended up referencing the wrong region. This tells me that the only this will work is either: 1) pass a specific title directly to the scripted_effect ( "REGION = title:c_roma" ); OR 2) create a custom scripted_effect that is run in the county scope and checks which county it is using the "this = ..." condition.
+
+Option 1) would be done similar to how I set it up in the other provided files in this folder, and how it is explained above. This is definitely quicker since all you need to provide when calling the effect is "REGION = title:c_roma", but the downside of this method is that it will only work when you know what specific titles you want to reference. If you wanted it to truly be dynamic, this method wouldn't work well since you can not pass titles using scopes.
+
+Option 2) is definitely a lot more tedious (and potentially overcomplicates things), but it would allow you to dynamically reference every county in the game as long as you setup the mod properly. For this method, it's setup is detailed below. The custom county geographical_regions could be setup something like this:
+
+    county_region_c_roma = {
+        counties = {
+            c_roma
+        }
+    }
+
+    county_region_c_middlesex = {
+        counties = {
+            c_middlesex
+        }
+    }
+
+    county_region_c_byzantion = {
+        counties = {
+            c_byzantion
+        }
+    }
+
+Then, whenever you need to get the geographical_region for a county, or set of counties, you would simply setup the script so that a custom scripted_effect is called while being in the scope of that county, or set of counties. For example, if you wanted to get the geographical_region for c_roma specifically, then you could set it up like this:
+
+    title:c_roma = {
+        get_county_geographical_region = yes
+    }
+
+Then the scripted_effect would be setup like this:
+
+    get_county_geographical_region = {
+        if = {
+            limit = { this = title:c_roma }
+
+            geographical_region:county_region_c_roma = {
+                save_scope_as = county_region
+            }
+        }
+        else_if = {
+            limit = { this = title:c_middlesex }
+
+            geographical_region:county_region_c_middlesex = {
+                save_scope_as = county_region
+            }
+        }
+        else_if = {
+            limit = { this = title:c_byzantion }
+
+            geographical_region:county_region_c_byzantion = {
+                save_scope_as = county_region
+            }
+        }
+        else = {
+            geographical_region:some_fallback_region = {
+                save_scope_as = county_region
+            }
+        }
+
+        -------------- OR -----------------
+
+        switch = {
+            trigger = this
+            title:c_roma = {
+                geographical_region:county_region_c_roma = {
+                    save_scope_as = county_region
+                }
+            }
+            title:c_middlesex = {
+                geographical_region:county_region_c_middlesex = {
+                    save_scope_as = county_region
+                }
+            }
+            title:c_byzantion = {
+                geographical_region:county_region_c_byzantion = {
+                    save_scope_as = county_region
+                }
+            }
+            fallback = {
+                geographical_region:some_fallback_region = {
+                    save_scope_as = county_region
+                }
+            }
+        }
+    }
+
+The script could use either the switch...case or if/else statements, and would obviously include an entry for every county in the game (I only listed these three since they are the ones I tested this with). Then, an empty region could also be setup as the fallback just in case to prevent any errors in the off chance that the script fails to get the region for the scoped county.
+
+This would then save the corresponding county's region as the scope, county_region, which could then be used later in the original script file for whatever it ends up being needed for.
+
+An example of a possible usage for this setup could be setting up completely dynamic situation subregions:
+    - For example, lets say you create a custom, generic situation that represents the collapse of an empire, and how all of the new/remaining powers in that area might begin vying for control. This would obviously be hard to do using the base game's predefined geographical_regions since it would be highly unlikely that the empire's land happens to just completely cover one particular region that you somehow predicted ahead of time. Instead, this could be made dynamic with the aforementioned mod setup.
+
+    - When you want to use this custom empire-collapse situation, you would set it up so that once some conditions are met, the script gets the geographical_region for the empire's capital county, and uses that to start a new situation using the effect mentioned in the Dev Diary:
+
+        start_situation = {
+            type = empire_collapse
+
+            sub_region = {
+                key = my_new_sub_region
+                start_phase = my_first_phase
+                geographical_regions = { scope:county_region } # This scope:county_region is the custom county geographical_county for the capital of the empire
+                map_color = { 0 0 0 }
+            }
+        }
+
+    - Then, the script would iterate through every county that is a part of that empire's realm (excluding its capital, since that was already added), use get_county_geographical_region to get a county's corresponding region, and then add that region to the already created sub_region in that situation (the dev diary has mentioned that sub_regions in situations are capable of growing/shrinking throughout the game, so I am assuming this will work. Obviously we'll need to wait until the DLC comes out to fully test this out). For example, this part could be setup like this:
+
+        every_sub_realm_county = { # Might need to use every_realm_county instead, I'm not perfectly clear on the differences, and one might be better in certain circumstances
+            limit = {
+                NOT = { this = scope:empire_capital_county } # This is just here to show that a limit would get added so that this iterates through all of the counties in the empire that are NOT the capital county, since that was already added
+            }
+
+            get_county_geographical_region = yes
+
+            empire_collapse_situation_example = { # THIS IS OBVIOUSLY WRITTEN BEFORE THE DLC WAS RELEASED, SO I AM ONLY GUESSING HERE HOW THE DEVS SETUP THE SUBREGION-EXPANDING EFFECT, THIS WILL LIKELY BE DIFFERENT FROM HOW IT IS ACTUALLY DONE
+                add_to_situation_subregion = {
+                    geographical_regions = { scope:county_region }
+                }
+            }
+        }
+
+    This would iterate through every county that belongs to that empire, getting its corresponding region, adding it to the subregion, then moving onto the next county until all of them are added.
+
+    - Throughout this process, it might be good to have a variable list created that saves every county that gets added to the subregion (unless the devs include some other way of tracking something like this). Then, lets say you want it to be possible so that under certain conditions, an area can be considered no longer influenced by the empire's collapse, or you no longer want it involved, or whatever reason you come up with, you would simply reference that county title, get its corresponding region, and remove it. For example:
+
+        scope:county_to_remove = {
+            get_county_geographical_region = yes
+
+            empire_collapse_situation_example = { # THIS IS OBVIOUSLY WRITTEN BEFORE THE DLC WAS RELEASED, SO I AM ONLY GUESSING HERE HOW THE DEVS SETUP THE SUBREGION-SHRINKING EFFECT, THIS WILL LIKELY BE DIFFERENT FROM HOW IT IS ACTUALLY DONE
+                remove_from_situation_subregion = {
+                    geographical_regions = { scope:county_region }
+                }
+            }
+        }
+
+    - Using a system like this, you could dynamically change what parts of the world are actively involved in certain situations with more precision than using any of the already predefined geographical regions.
+
+
+
+
+NOTE TO SELF:
+    - Could maybe use the CK3 landed titles scripts to get a complete list of all of the counties in the game, then use Python/MATLAB to automatically create all of the custom geographical_regions and the scripted_effect used to retrieve the region corresponding to a particular county. (Will likely wait until the DLC is released in case they change anything. Then it will obviously need to be done again once All Under Heaven is released).
+
+    - The way I currently have it setup might work well as a framework in case anyone wants to use that system to dynamically create situation regions. The only time the regions and scripted effects I showed above would need to be changed would be if a mod adds/changes the counties in the game.
+        - Once I get the Python/MATLAB scripts setup to automatically create the regions and scripted_effects necessary, I could either release those along with this mod/framework;
+
+        - OR, I could see what happens if the regions and scripted effect reference a county that doesn't actually exist in the current game. If this doesn't break anything, I could theoretically go through the major mods, get a list of their counties as well, and combine everything into one big list of counties that would be compatible with the base game and major conversion mods.
+            - Even if this works, having that many regions and county checks might seriously slow down the game. Will need to see how bad it affects the performance to see what would be better.
+
+

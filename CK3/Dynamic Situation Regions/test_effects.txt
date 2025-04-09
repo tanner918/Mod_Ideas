@@ -1,0 +1,7 @@
+﻿test_custom_region = {
+	every_county_in_region = {
+		region = test_county_region_$REGION$
+
+		set_county_faith = faith:hellenic_pagan
+	}
+}

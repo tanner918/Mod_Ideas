@@ -1,0 +1,225 @@
+####################################################
+####             History/Background             ####
+####################################################
+
+While this might not fit as well in the base game, it could potentially be useful for mods like TFE or WtWSMS. Currently, those mods represent migatory cultures using some special culture tradition that gives them a special CB. The main downside to this that I see is that it limits what the tribes actually act like. They still behave like a settled nation throughout the war, so it doesn't feel that different from a normal war, outside of the fact that if you win you end up moving which lands you own.
+
+With the addition of landless gameplay, this could potentially be improved.
+
+If a custom government type is created that uses the base game's landless adventurers as a base, you could potentially represent migratory tribes better. This government could be setup in a way that will allow these tribes to actually move around the map and decide where they want to move and who to attack in order to settle, like how it is done in Imperator Rome. 
+
+NOTE: Dev diaries for Khans of the Steppe have suggested its Migration mechanic may be extended to regions other than the Steppe (but it still seems to use the fertility mechanic, so I am not sure how that will work). This topic might need to be revisited after that DLC gets released.
+
+
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+- How to access this government type:
+    - Setup a decision available to rulers that meet certain conditions.
+        - Conditions:
+            - Character must be a tribal ruler with lowest tribal authority
+
+            - Character must be Count/Duke
+
+            - Character must be an adult, at peace, not busy, etc. (typical decision requirements)
+
+            - Their culture should be in the Tribal Era
+                - Should their culture also require specific tradition(s)?
+
+            - They haven't migrated in a certain amount of time (~5 years?)
+                - This could be done using variables. After a character successfully migrates their lands and takes land from somewhere else, they could be given a variable signifying they successfully migrated that is set to disappear after how many years it is decided to prevent the decision. If the character happens to die before that variable is removed, then their heir would "inherit" the variable and the remaining time, preventing the decision from being taken even after sucession until the appropriate amount of time has actually passed.
+
+            - It should have some prestige cost (~200/300?)
+
+        - Effects:
+            - If character is a Duke, then destroy their currently held duchies.
+
+            - Maybe find some way to allow the character's courtiers/vassals to join them.
+                - Courtiers would be easy, since they don't have vassals themselves, so only they need to be checked.
+
+                - Vassals will be a bit harder, since they also come with their own courtiers/vassals, so it would need to be decided whether to bring those characters as well.
+
+                - Could maybe limit it so that only really loyal courtiers/vassals always go with the migrating character
+                    - Always go with:
+                        - Positve relationships: Friends, Best Friends, Lovers, Soulmates, etc.
+                        - Characters with really high opinions of the migrating character (60/75+ ?)
+                            - Dynasty members could probably require a slightly lower minimum opinion to join given loose family ties
+                            - House members could probably require a slightly lower min opinion that Dynasty members
+                            - Immediate family (regardless of house) could require an even lower min opinion that Dynasty members
+                        - Children whose parents are going
+                        - The non-dominant character in a marriage (i.e. woman in normal marriage, man in matrillineal marriage) if spouse goes
+
+                    - Never go with:
+                        - Negative relationships: Rivals, Nemesis
+                        - Characters with really lower opinions of the migrating character (-50 ?)
+                        - Characters who are currently in a house feud with the migrating character
+                            - Should the feud also be stopped when migrating?
+                        - Children whose parents are not going
+                        - The non-dominant character in a marriage (i.e. woman in normal marriage, man in matrillineal marriage) if spouse doesn't go
+
+                    - If not in one of the above categories, scale chances of going according to:
+                        - Opinion of migrating character (higher opinion, greater chance)
+                        - Migrating Character's dread, or whether courtier/vassal is terrified
+                        - There might be some cultural traditions or religious doctrines/tenants that would make sticking together more/less likely
+
+                - Need to determine exactly how vassals/courtiers should join the migrating character:
+                    - I could just make them "followers" in the character's "camp" (or whatever it ends up being called), so that makes it so that all of the characters that will be moving move all at once 
+
+                    - An alternative to the above might be to have some of the characters move to a new location using the new custom government. Then, when they settle, give the characters remaining in the old land some event/"notice" notifying them about the new settlement, and allowing them to decide whether to remain where they are, or move to live in the new lands. If they decide to move, have them use the travel mechanic to actually move there.
+
+            - Any vassals that don't migrate become independent. 
+
+            - Any vassals that do migrate will have their counties distributed to their courtiers that don't migrate.
+
+            - Should give some special MaA to the migrating character.
+                - They should have no maintenance
+                    - It should be determined whether the custom government type will be using the rations/food resource from adventurers. If it does, should they have a cost for that when moving camp?
+
+                - Could be a custom MaA, based around the Migrant cohorts in Imperator
+
+                - The amount of special troops they get should be based off something from when they were holding land
+                    - Easiest way might just be basing it off the amount of levies they had when they took the decision
+                        - Maybe something like take ~75/80% of their current levy size, divide that by 100, then get the floor of that (round down) to get number of special MaA units to give
+
+                    - Tribes don't use development, so basing it off that wouldn't make much sense
+
+                - Should these special troops be removed when settling down somewhere? And if so, something should probably be given according to the amount of remaining troops.
+                    - If they are removed upon settling, that would imply that what they are based off something that could theoretically be transferred from where they originally were to where they moved to. For example, how pops in Imperator are the basis for a lot of things like income and levies, so moving them allows some of that levy/income to be retained even in the new location.
+                        - The main issue with this is that tribes won't build up a lot of development (which would be the easiest thing to base this off), so that probably shouldn't be the basis for how many tropps to raise. Plus, it could probably end up being exploited somehow to increase the development of new counties, so that should be avoided.
+
+                        - For now, until a better idea is determined, maybe just something like giving some prestige based off the number of remaining "migratory cohorts"?
+
+            - All of the counties whose holders end up migrating should have their culture/faith affected if they have a minority culture/faith present in the county.
+                - This obviously would only apply if using a mod that has that system in it (such as ROA, TFE, WtWSMS, etc.)
+
+                - If there are no minority cultures/faiths, then either nothing could happen, OR maybe make a small minority for any neighboring culture/faith to represent maybe some new people moving into the area.
+
+                - If there are minorities in the county:
+                    - If any are a large minority, maybe have a chance for one of them to become the new primary culture/faith, and demote the old culture/faith to a large minority
+
+                    - If there are only small minorities, maybe have a couple of them increase to a large minority
+
+                    - Obviously this should only affect counties with the same culture/faith as the migrating character
+
+                    - Could maybe make these game rules, in case someone doesn't want all of this happening
+
+    - Could maybe look into how the base game sets up allowing characters who lose all of their land to become adventurers, so that maybe that could be used to allow smaller tribe characters to become these migrating tribes instead, to represent them getting pushed out of their land?
+
+
+- Features/Mechanics for the government type:
+    - For now, just use the base game adventurer government type as a base
+        - Don't allow the different camp purposes, since those don't make sense for this government type
+            - Could maybe make my on custom "purposes" in place of the base game ones. Not sure exactly what would make sense for this given that the whole point of the government type is just to allow tribes to move locations.
+
+            - Depending on how the game reacts to having no available "purposes"/"laws", I might just need to create one as a stand-in to prevent errors
+
+        - Should the government be forbidden from recruiting the MaA the normal way adventurers get them?
+            - Easiest way to do this would just have the government give the character something like "-100 MaA Regiment Limit" to prevent having to modify a lot of different files
+
+            - What might make more sense would probably be a special decision that can only be used in counties of the same culture as the character that can give them more of the special "Migratory Cohort" troops in exchange for lowering the minority size of that particular culture in the county.
+                - Not sure exactly what should happen if they are playing without a mod that has minority system
+
+                - Should it cause an event that allows the holder of the county to decide whether to allow the migrating character to freely "recruit" the MaA, have them pay some price, or deny it?
+                    - If its denied, can maybe allow the migrating character to just recruit them regardless in exchange for an opinion penalty with the county's holder
+                        - Would probably result in giving less special troops then if they were allowed to do it by county holder
+                        
+                        - Should it still result in the culture's minority status lowering since they are recruiting less people?
+
+                - There should be some way of tracking which counties the character recruited more MaA from so they can't just take from the same counties over and over
+                    - With this in mind, since recruiting from the same county over and over again is being prevented, should the decision overall have a cooldown, or should the cooldown come on the form of tracking the counties it was done on, then having those specific counties be on a cooldown instead? That way, they could recruit from a few different counties, wait a while (or fail settling somewhere), and go back to recruit more troops from those counties again after a certain amount of time has passed?
+
+        - I'm not too familiar with building/camp/estate modding, so for now can probably just use the same building system as adventurer, then maybe try making my own custom buildings that better fit the migrating tribes
+            - Ideas for custom buildings:
+                -
+
+        - Should they use the provision system that adventurers use?
+            - It would probably make sense given that the government type is supposed to represent a tribe of people migrating
+
+            - If its used, might need to set it up so the custom MaA use provisions
+
+            - It could act as a way of limiting the tribe's migration, so they don't just cross the entire map in one go
+
+        - Should they have access to the contract system from adventurers?
+            - It wouldn't make much sense for what the government is supposed to represent
+
+            - Might make more sense to not allow contracts, but allow them to be hired as mercenaries
+                - Seems like historically, it was common for migrating tribes to be used as mercenaries to prevent them from raiding; OR offering to allow the tribe to settle inside the realm in exchange for military service.
+
+    - If it is possible, find some way to allow this government to raid.
+        - It might not be possible for them to raid the normal way since there is no "home" territory to return to after getting some loot.
+
+        - It might be possible to rework the adventurer contract system so that custom contracts could be used instead.
+            - It could work possibly by having a unique character interaction on landed rulers that generates a custom contract in their realm. This contract then leads to some events like the base game contracts that then gives a chance for the tribe to have varying degrees of success in raiding.
+
+            - Raiding a lot could then give some special trait that tracks how troublesome the tribe is seen by nearby rulers, that could then maybe give them a special decision to "deal with troublesome raiders", that could maybe start a war to wipe them out.
+
+    - Give this government type access to a unique CB that would allow them to settle.
+        - I am inbetween whether this CB should simply be targeting a single duchy, allowing them to take that entire duchy if they win, or making it more like the invasion CBs, targeting one specific title, but allowing all controlled counties to be taken as well (right now leaning more towards the invasion CB idea)
+
+        - When declaring the war, all nearby rulers that share the same culture as the defender should recieve some opinion penalty for "trying to steal land from their people"
+
+        - If the war fails, the migrating tribe should be forbidden from entering that character's land (using the same system adventurers use to forbid characters from certain lands)
+            - Given that the main troops that the migating tribe is going to have are the special "migratory cohort" MaA, if there are none left when they lose a war, maybe then delete the title and kill off most of the characters in that camp, to represent the tribe being wiped out.
+
+            - Otherwise, if there are still troops left, then just leave them be, because if they continue to fail more, they will eventually be wiped out
+
+        - If the war succeeds, then the migrating tribe should get all of the land they hold, and their capital should be put in the duchy they were targeting.
+            - It should also allow a special decision/event to be done that allows the character to determine how they want to distribute their people throughout the lands they conquered (meaning doing some initial conversion of their lands)
+                - Depending on how many of the "migratory cohorts" they had left when winning the war, a variable is saved that tracks how many "cohorts" they have to settle
+                
+                - They should have different options for conversion (exact numbers up for balancing):
+                    - ~500 troops allows for changing the primary culture+faith (and making the old primary culture/faith a large minority instead)
+
+                    - ~300 troops allows for creating a large minority culture+faith
+
+                    - ~100 troops allows for creating a small minority culture+faith
+
+                - Will likely do through decisions.
+                    - 3 different decisions, one for each of the above options.
+                        - The decisions will only be shown for landed characters that have the variable tracking the number of "cohorts".
+
+                        - If a character dies before being able to settle all of the "cohorts", then have their primary heir inherit the variable with the remaining value (unless I can find something better to store the variable in that would allow tracking across characters without the risk of being destroyed
+                            - I did consider having it be saved on the character's new primary title or capital county, but those could potentially change or be destroyed
+
+                    - Each decision will list all of the available counties using the decision widget option (need to lookup how to use this)
+                        - For now, will just make available counties be any county that doesn't have the same exact primary or minority culture+faith as the character (to prevent the decisions from being taken on the same county more than once)
+
+                    - The character will select the county (and will probably have the AI give a higher priority to the capital and lands near it), and when the decision is taken, the culture/faith changes mentioned above are done, and that corresponding amount of "cohorts" are subtracted from the variable.
+
+                    - Once the tracked number of "cohorts" is below whatever the lowest requirement is (above, it is 100 for small minorities), then just remove the variable entirely since it is no longer usable, which will also remove the decisions.
+
+                    - Could maybe also have some negative impact on cultural acceptance, where the more cohorts that are moved into a county causes more acceptance to be lost
+                        - Unless the primary culture there has some specific traditions that would cause them to not mind new people moving in
+                            - Is there any tradition that would realistically prevent people from getting angry with people moving in and forcefully changing the primary culture?
+
+            - A truce should still be setup to allow the migrating tribe some time to recover
+
+            - Should the losing defender get a claim on the lands they lost?
+                - I am leaning towards yes, not sure if it should be a weak or strong claim through
+
+    - There could also be a custom character interaction/decision that allows them to ask the ruler of the lands they are in for permission to settle there peacefully.
+        - This would likely need to be in exchange for something, like gold, "military service" (if I can find some way of accurately representing that), etc.
+
+        - I think the base game has something like this, might be able to just use that, or at least use it as a base.
+
+        - If the county they are located in is directly held by the top liege and they accept, then there should be no opinion penalty. BUT, if the county holder is not the top liege and the top liege accepts, the county holder who lost their county should probably get a claim and an opinion penalty with the top liege and migrating character that settled their.
+
+    - For the AI, need to figure out how to make them:
+        - Properly use raiding and target rulers
+
+        - Properly recruit more "migratory cohorts" from counties, determine when to accept allowing migratory tribes to recruit, when to just take the special troops when refused, etc.
+
+        - Properly know when/how to use the custom CB
+
+        - Properly know when/how to use the character interaction to ask to peacefully settle
+
+        - Would be nice to find some way of making characters target specific regions, likely based off culture
+            - For example, TFE has the Struggle for Britannia, so having Angle and Saxon migrating tribes prioritize migrating to England for that would be nice
+
+            - Could also better represent cultures following their historical migration paths
+
+
+
+
+

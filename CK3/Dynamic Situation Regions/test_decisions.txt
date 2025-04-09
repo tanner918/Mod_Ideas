@@ -1,0 +1,40 @@
+﻿region_test_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_roman_city.dds"
+	}
+
+	decision_group_type = major
+	ai_check_interval = 0
+
+	is_shown = {
+
+	}
+
+	is_valid = {
+		is_ai = no
+	}
+
+	effect = {
+		hidden_effect = {
+			title:c_roma = {
+				save_scope_as = test_region
+			}
+
+			test_custom_region = { # When used with the custom scripted effect and geographical_regions files provided in this folder, this will reference the custom geographical_region "test_county_region_scope:test_region"
+				REGION = scope:test_region
+			}
+
+			test_custom_region = { # When used with the custom scripted effect and geographical_regions files provided in this folder, this will reference the custom geographical_region "test_county_region_title:c_roma"
+				REGION = title:c_roma
+			}
+		}
+	}
+
+	ai_potential = {
+		always = no
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
