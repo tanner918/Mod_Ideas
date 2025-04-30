@@ -8,7 +8,10 @@ With the addition of landless gameplay, this could potentially be improved.
 
 If a custom government type is created that uses the base game's landless adventurers as a base, you could potentially represent migratory tribes better. This government could be setup in a way that will allow these tribes to actually move around the map and decide where they want to move and who to attack in order to settle, like how it is done in Imperator Rome. 
 
-NOTE: Dev diaries for Khans of the Steppe have suggested its Migration mechanic may be extended to regions other than the Steppe (but it still seems to use the fertility mechanic, so I am not sure how that will work). This topic might need to be revisited after that DLC gets released.
+NOTE: The migration mechanic introduced in Khans of the Steppe looks like it could potentially be extended (a little) to allow other types of governments to use it.
+- The issue is that the migration mechanic is only available to rulers whose government uses the fertility mechanic and is currently participating in a situation that allows migration.
+- Even then, migration is only possible within the land that is covered by the situation, and you can only migrate to lands covered by a single situation.
+-- For example, if, in the base game, you are a nomadic ruler in the extra Sami Nomad situation and you conquer all the way to the Great Steppe, you are now technically a participant in both the Sami Nomad situation and the Great Steppe situation. But, because the Sami Nomad situation was the first of these situations you were active in, you can only migrate to the lands covered by the Sami Nomad situation, NOT the Great Steppe situation. The only way to begin migrating around the Steppe would be to lose all of the land you have in the Sami Nomad situation, making it so you are no longer a participant in that situation, and now only a participant in the Great Steppe situation. This then allows you to begin migrating around the Steppe.
 
 
 ####################################################
