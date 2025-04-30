@@ -1,0 +1,49 @@
+####################################################
+####             History/Background             ####
+####################################################
+
+Historically, Holy Orders were founded for a variety of purposes, from charity work to military service.
+
+Holy Orders could gain some secular power, typically being given the approval by the Pope or respective imperial authority (using Catholic Holy Orders as a reference).
+
+Using the Teutonic Order as a reference, they seem to have been run a little more like an admin realm than a feudal realm, with control over land being appointed by the Grandmaster of the Order, this land was easily revokable, wasn't hereditary, and it seems like it may have been given mainly to the knights/monks of the Order. The Grandmaster themselves was elected, typically by the senior knights. Order members were often sworn to celibacy.
+
+It seems like it was common for these Holy Orders to be aggressive when trying to convert people. Religious practices were often forced on the natives of the land they conquered, and refusal to participate could lead to execution, enslavement, or exile.
+
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+- Will likely need to create a new government for this since it seems like quite a bit of stuff related to the base game holy_order_government is hard coded.
+
+- Should find what conditions would allow the holy orders to be created. Should it just stick with the base game conditions?
+
+- Should find some way of determining how "successful" a holy order is. If they seem "successful" or well known, then maybe they could be sponsored by their Head of Faith to spread their faith (like the Teutonic Order).
+-- During this, the Order could gain control of actual counties, expanding upon their secular power.
+
+- They should be given custom succession laws for their Grandmasters and "land owners", like how admin realms have specific succession laws for the emperor and governors.
+-- For the Grandmaster's succession, should it be an elective succession where they are voted upon by the knights in the Order?
+-- For "land owners", should it be candidate-based succession, like appointment/acclaimation?
+
+- The main reference for Holy Orders, the Catholic Holy Orders, typically required their members to be celibate. Should this be required for all Holy Orders, or just ones that don't allow clergy to marry? (Should see how its currently setup in game)
+
+- Could maybe get a boost when converting lands in exchange for lower popular opinion, or lowering the opinion of nearby rulers whose faith matches the faith of the county being converted (to represent how aggressive they converted lands). Could also lower opinion of all courtiers whose faith (happens) to match the county's faith, and give them a chance to flee to a nearby same-faith realm.
+
+- They should have some way of ensuring that all members' faith matches the faith the Holy Order is supposed to be for.
+-- It should be impossible, for example, to elect a grandmasters and "land owners" of different faiths.
+-- Courtiers of different faiths should in some way be forced/"greatly suggested" to switch to the relevant faith.
+-- Characters should only be capable of becoming knights for this title/realm if they have the correct faith.
+-- Might be able to utilize the State Faith mechanic for most of this, where the State Faith is always the faith the Holy Order is made for, it can't be changed, and it would make it easier to check all of the above conditions.
+
+- Should figure out how the Orders are going to interact with other realms.
+-- As it is now, Holy Orders lease out baronies from rulers. However, for some reason, that lease type is hard coded, so modifying/interacting with it is a bit limited. (This mightly imply a new government needs to be created). It MIGHT be possible to setup a custom lease type like this, but I will need to see how well that handles landless rulers, or independent rulers in different realms.
+-- They should probably be recruitable by rulers of the same faith fighting against evil faiths (like how holy orders are now).
+--- A Holy Order, currently, is given a patron that can hire them for free. I obviously can't use the same system for this new government, but this could be represented in other ways. For example, now that tributaries exist, I could maybe make a custom tributary type that makes the "suzerain" be considered the "tributary's" Patron, allowing them to freely call them into their wars.
+--- Should the same constraints be put on calling in these custom Holy Orders as exist for the current holy orders, where if they are rented out, you can't call on them, unless the person calling on them is their Patron, who can "steal" the Holy Order from whoever is hiring them out for a piety cost? If so, could maybe also make it so the Patron "stealing" the Holy Order while they are in someone else's war causes a negative opinion modifier between the ruler that stole the Order and the ruler they were stolen from.
+
+- There is the government_rule "administrative", whose description says it allows "top liege to have landless vassals who are house heads of noble families" and "allows hiring and usage of MaA that belong to a title". In order for this government to be playable, where the player can still be relevant in the Order even when they aren't the Grandmaster or a "land owner", I might need to look into whether this is required.
+
+
+
+
+
