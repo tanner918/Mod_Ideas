@@ -1,0 +1,91 @@
+####################################################
+####             History/Background             ####
+####################################################
+Making languages actually useful, and actually use diplomats that travel when you need to conduct diplomacy.
+
+History:
+- Historically, many rulers need something like interpretors/translators when conducting diplomacy.
+- There were a few ways these translators would come around:
+  - Professional linguists: part of royal/imperial court
+  - Multilingual merchants/envoys, especially near borders/port cities
+  - Religious figures, like monks/missionaries, who often knew multiple languages
+- These interpretors were very important, and they needed to be trusted, so rulers would often bring their own to meetings.
+- Another thing rulers used when conducting diplomacy was diplomatic languages (lingua francas), for example:
+  - Latin: Dominated diplomatic and scholarly communication in Catholic Europe.
+  - Greek: Common in the Eastern Roman (Byzantine) world.
+  - Arabic: Widespread across Islamic realms and used in diplomacy even with Christian powers (e.g., Byzantines, Crusader states).
+  - Persian: Used in Central Asia, Persia, and even parts of India for diplomacy.
+  - Turkic languages: Functioned as diplomatic languages across steppe polities and between nomadic empires.
+- In some cases, documents or treaties were written in two or three languages, each side’s version included.
+- Royal intermarriage was common, and queens or princesses who crossed into foreign courts often served as cultural and linguistic intermediaries.
+  - Their attendants and children would often become bilingual, bridging diplomatic gaps.
+- Embassies were often long-term missions. Envoys learned local customs and languages over time. In some cases, permanent diplomatic missions (especially by the 14th–15th centuries) started to emerge.
+- Religious orders, especially the Catholic Church, played a large role in diplomacy:
+  - Monasteries and churches often educated men in Latin and Greek, enabling cross-cultural communication.
+  - In Islamic regions, ulama and scribes often spoke Arabic and Persian.
+
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+Mod Setup (WIP):
+- Certain diplomatic actions would require you to actually use a diplomat that travels to the target ruler's court, negotiates with them, then travels back to your court to give the response.
+  - A new court position could probably be added for a designated interpretor.
+    - Effects on liege:
+      - 0 to +3 Court Grandeur Bonus (based on aptitude)
+      - 0 to +5 Independent Ruler Opinion (based on aptitude)
+    - Effects on position holder:
+      - +10 Opinion of Liege
+      - +0.5 Monthly Prestige
+      - +1 Diplomacy
+    - Salary (Scales with title rank + culture era):
+      - 0.1 Gold
+      - 0.1 Prestige
+    - What affects aptitude:
+      - Increase:
+        - Number of known languages
+        - Higher learning
+        - Higher diplomacy
+        - Diplomat trait
+        - Scholar trait
+        - Diplomacy education traits
+        - Gregarious
+        - Loyal
+        - Patient
+        - Eager reveler experience (minor)
+        - Astute Diplomats tradition (likely minor since it already boosts stuff like diplo and language learning)
+      - Decrease:
+        - Paranoid
+        - Lazy
+        - Shy
+        - Impatient
+        - Reclusive
+        - Disloyal
+        - Lunatic
+        - Lisping
+        - Stuttering
+        - Wheezing
+        - Dull
+        - Drunkard
+        - Irritable
+        - Incapable (severe)
+        - Isolationist tradition
+    - Requirements to hold position:
+      - Must know at least one language that ruler knows
+      - Not a ruler/vassal
+      - Not incapable
+      - Not a tax collector
+      - Not a diarch
+      - Not a councilor
+      - Not blind
+      - Not a knight
+      - Can't have another 'job' position (Will require modifying the triggers that specify which court positions are considered full-time jobs)
+  - When a ruler wants to interact with another ruler, their diplomat actually needs to travel to the target's capital/court, negotiate with them, and travel back to give the respones.
+    - All of the relevant character interactions that should require diplomats will likely need to be modified so that the base game decision can't be chosen. Instead, a new, custom version is what gets chosen, which instead sets up a travel plan for your diplomat to travel to their court, where they will stay and try to negotiate with the target ruler (if possible, maybe make this a new activity where the diplomat and target ruler actually go back and forth with negotiations, making it possible for the diplomat to succeed/fail negotiations), then they need to travel back to their liege's court to give the response.
+      - If making the negotiations an activity isn't possible, can likely just make the chances of them accepting based off the ai_accept chance for the relevant character interaction, but likely also include parts that modify the chances based off the diplomat's aptitude/skill
+
+- Certain diplomatic actions would require you to, in some way, actually be able to communicate with the target ruler.
+  - There needs to be some chain of known languages between the two relevant rulers.
+    - If ruler A sends out a diplomat to another ruler B, that diplomat must speak one of the languages that ruler A speaks. If the diplomat speaks a language ruler B knows, then they will talk directly to each other. Otherwise, if the diplomat doesn't speak a language ruler B knows, ruler B can use an interpretor that knows a language ruler B knows as well as another language that the diplomat knows.
+    - This means that for these specific diplomatic actions, it needs to be checked beforehand whether communication with the target ruler is possible.
+      - There doesn't seem to actually be a way to directly whether a character knows the same language(s) as another specific character (there is no way to iterate across all known languages). If there is absolutely no way of directly checking this, worst case, I might just need to make a custom scripted_trigger that checks if two characters have any languages they know in common. This will likely need to check separately, for every single language, "Do Character A and Character B both know this language, if not, do they both know this language, etc."
