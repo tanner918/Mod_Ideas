@@ -1,0 +1,43 @@
+####################################################
+####             History/Background             ####
+####################################################
+
+CK3 currently has very specific governments meant to represent a generalized form of governance, but they don't really allow for a lot of variation, and can't accurately represent how even if two realms could be considered "Feudal", they might not be governed the same way.
+
+It also can't accurately represent how a realm's government changes over time, as that is mainly just represented by them changing government form entirely.
+
+
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+- The little nuances between realms can best be represented through laws.
+  - CK2 had a fairly in depth law system that allowed a lot of different aspects of government to be changed and set as desired. Copying their set of laws might be a good start.
+  - Can maybe try having the government-specific content be locked behind certain laws.
+    - However, will need to figure out how to limit certain government aspects that are set using government-level parameters.
+      - "affected_by_development" (The effects of this seem to be hard-coded, and I can't make this only apply under certain conditions. Seems like if its set to yes, it will ALWAYS apply, no matter any othe conditions)
+      - "primary_holding"/"valid_holdings"/"required_county_holdings" (Same as above, effects seem to be hard-coded.)
+      - "vassal_contract_group" (From looking at the base game's contract stuff, it seems like at least some of the contract stuff can be shown under certain conditions using the "is_shown" block, and restrictions on certain choices within a specific contract option can be set using "is_valid", so I could theoretically include as many options as I want, but maybe only have certain ones be shown under certain circumstances, like having specific laws)
+      - "house_unity" (House unity doesn't seem to take in any other parameters to allow restricting this system from being use. So, if a government is set to use this, it will ALWAYS use it, regardless of any other conditions)
+      - "domicile_type" (It seems like domiciles aren't automatically created, and instead specific titles need to be created that have the domiciles "attached" to them, like the "create_nomad_title" effect)
+      - "tax_slot_type" (It seems like there is no way to conditionally allow/prevent this mechanic from being used. If a government is set to use it, it will always use it. However, you can make it so that the different obligations types only show up under certain conditions, so it might be possible to make it so that if a realm is setup up so it "shouldn't use tax slots", maybe there is just a very basic obligation with no actual effects. But, if a vassal has a government type that uses these tax_slots isn't assigned to a tax_slot, they contribute nothing, so I would need to somehow figure out how to sort that out if I wanted to give players the option to use this)
+      - government_rules:
+        - "administrative"
+        - "mercenary" (I think this just makes the character appear in the "Military > Mercenaries > Special Mercenaries" window.)
+        - "state_faith" (It seems like there might not be a way to only have this mechanic applied sometimes, if its enabled, its always enabled. But, the various decisions/content that depends on it could be modified to account for certain laws in addition to having this government_rule, so if a certain law isn't passed, then it basically does nothing.)
+        - "landless_playable"
+        - "uses_county_fertility"
+        - "uses_culture_and_house_head_named_realms"
+        - "obedience"
+        - "subject_men_at_arms"
+
+
+
+
+- The mod "Immersive Realm Laws" already has the Laws tab setup to use a scrolling window. Can maybe use that as a reference for how the GUI should be setup.
+
+
+
+
+
+
