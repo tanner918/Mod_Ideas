@@ -1,0 +1,107 @@
+####################################################
+####             History/Background             ####
+####################################################
+(Most research done so far was done using ChatGPT. While it isn't always right, it can often serve as a good starting point to know what to look into later in more detail)
+Things that I think should really be looked into more detail will be marked with <!>
+
+
+SUCCESSION:
+I. Roman Imperial Succession (27 BCE - ~284 CE) [The Principate: Early & High Empire]
+  - Succession of the Emperor
+    - No Fixed Law of Succession:
+      Rome never developed a formal, codified law of imperial succession. Succession was a combination of:
+        - Adoption
+        - Senate approval
+        - Military support
+        - Public acclaim
+    - Adoption as a strategy:
+      - Augustus (the first emperor) set the precedent by adopting potential heirs (Tiberius, later others). Adoption was a way to select the most competent successor, rather than rely on biological children.
+      - Famous examples:
+        - Nerva adopting Trajan (96 CE)
+        - Hadrian adopting Antoninus Pius, who in turn adopted Marcus Aurelius and Lucius Verus.
+    - Senate Role: <!> (What exactly did the Senate do, what were the events leading to the Senate's decreased power?)
+      - Formally, the Senate had to confirm a new emperor, but after Augustus, the real power lay with the army and Praetorian Guard.
+    - Military Power: <!> (How exactly would the military end up with priority when determining new emperors? How did they get this power?)
+      - As time went on, the military became the real kingmaker. The Praetorian Guard even auctioned the throne (e.g., Didius Julianus in 193 CE).
+    - Dynastic elements: <!> (More detailed examples of this happening. What were other peoples thoughts on this practice?)
+      - Some emperors tried to establish dynasties (Julio-Claudians, Flavians, Severans), but this was always precarious.
+
+  - Succession for Landowners/Governors
+    - Senatorial Provinces: Governors appointed by Senate, often drawn from elite families.
+    - Imperial Provinces: Governors appointed directly by the emperor.
+    - No hereditary system for governors: Offices were temporary, often lasting 1-3 years.
+    - Landowners (latifundia owners):
+      - Large estates were privately owned and inherited like normal private property, passed down family lines according to Roman inheritance law.
+
+  - NOTES:
+    - 
+
+
+II. The Crisis and the Dominate (284 - 476 CE in the West) [The Late Empire]
+  - Succession of the Emperor
+    - Diocletian's Tetrarchy (293 CE):
+      Attempted to systematize succession through:
+      - 2 senior emperors (Augusti)
+      - 2 junior emperors (Caesares) as designated successors.
+      - Succession was supposed to be peaceful via appointment.
+      - Failed in practice due to personal ambition and military interference.
+    - Civil Wars continued:
+      - After Diocletian, succession again depended largely on military strength. Constantine I ultimately took sole power.
+    - Dynastic ambitions resumed:
+      - Constantine and his successors tried to build hereditary succession, but internal conflict often derailed plans.
+
+  - Succession for Landowners/Governors
+    - Governorship still appointed:
+      - Now more strictly controlled from the imperial bureaucracy.
+    - Aristocratic offices increasingly tied to imperial favor.
+    - Land inheritance remained private:
+      - Large landholding families (senatorial aristocracy) became semi-autonomous power bases, especially in the Western Empire's collapse. <!> (Did this lead to actually independent realms, or were they just now powerful in whatever realm took over the area?)
+
+  - NOTES:
+    - 
+
+
+III. Byzantine Empire (476-1453 CE)
+  - Succession of the Emperor
+    - No formal hereditary monarchy:
+      - Officially, the emperor was chosen by God, but practically, dynasties often ruled for extended periods (e.g., Macedonian, Komnenian, Palaiologan dynasties).
+      - Sons were usually crowned co-emperors while the father still reigned, ensuring smoother transitions. <!> (Any cases where a Byzantine emperor crowned a co-emperor that wasn't their child? What were other peoples' thoughts on this practice?)
+    - Acclamation and Legitimacy: <!> (What role did all of these people actually play? Was it basically just them saying they will/won't loyally follow the new emperor? Did they have any actual power in determing who would be the next emperor?)
+      - The army, Senate (by now a mostly ceremonial body), clergy, and people of Constantinople were often involved in acclamation.
+      - The Patriarch of Constantinople crowned the emperor, giving divine legitimacy.
+    - Military Coups & Usurpation:
+      - Military still played a role, as did palace intrigues.
+      - Empresses and eunuchs sometimes acted as kingmakers. <!> (How often did they actually choose the next emperor? Did they openly choose candidates, or was it just behind the scenes/scheming?)
+    - Court bureaucracy:
+      - Byzantine court titles and elaborate protocols added some stability but did not fully prevent coups. <!> (More detail)
+    - The Church's role:
+      - The church played an increasingly significant role in recognizing and legitimizing emperors. <!> (Did they have a voice in choosing next emperor, or just trying to get other people to recognize the new emperor?)
+
+  - Succession for Governors and Landowners
+    - Theme System (7th-11th centuries):
+      - Provinces (themes) were run by military governors (strategoi), appointed by the emperor.
+      - Not hereditary, but local military families could accumulate informal regional power.
+    - Hereditary power informally grows:
+      - Powerful aristocratic families (e.g., Phokas, Doukas, Komnenos) accumulated land and titles, often marrying into the imperial family.
+      - By the 11th century, aristocratic magnates controlled much of the empire's wealth.
+    - Pronoia System (12th-15th centuries):
+      - Land grants given to military officers or nobles for life, not hereditary by default.
+      - Over time, many pronoiai became de facto hereditary, contributing to decentralization.
+
+  - NOTES:
+    - 
+
+
+####################################################
+####                  Gameplay                  ####
+####################################################
+
+How to handle titles that should be returned to the character's liege upon death of the holder:
+  - Could try making a custom succession law that has succession handled like this:
+    succession = {
+        order_of_succession = generate
+        pool_character_config = pool_liege
+    }
+    then I will also need to make a custom pool_character_selectors option called `pool_liege` that tries to make it so that the only valid character would be the character's liege. When reading through the info file for pool_character_selectors, it says that the scope scope:base could reference the council owner or the predecessor, and from reading through the ones that already exist, it does seem like it references scope:base sometimes as a saved character scope for the character that just died while holding the title. Using this, I could try making it so that the only valid character is whoever meets the condition `this = scope:base.liege`, and see if that properly targets the dead character's liege, making the title revert back to them upon death.
+  - If the above doesn't work, might need to just create an on_death on_action that checks certain conditions (like a specific succession type, whether the title has a specific variable, however I decide to handle that), and if the are met, make the new title holder the character's liege just as they die.
+
